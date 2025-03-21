@@ -14,7 +14,14 @@ kubectl expose deployment first-app --type=LoadBalancer --port=8080
 kubectl get services
 kubectl scale deployment/first-app --replicas=3
 
+*******
+minikube service first-app
+*******
+
 docker build -t j0nnyz/kub-first-app:2 .
 docker push j0nnyz/kub-first-app:2
+kubectl create deployment first-app --image=j0nnyz/kub-first-app:2
 kubectl set image deployment/first-app kub-first-app=j0nnyz/kub-first-app:2
 kubectl rollout status deployment/first-app
+kubectl rollout undo deployment/first-app
+kubectl rollout undo deployment/first-app --to-revision=1
