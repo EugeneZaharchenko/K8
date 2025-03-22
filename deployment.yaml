@@ -28,6 +28,13 @@ spec:
       containers:
       - name: second-node-c
         image: j0nnyz/kub-first-app:2
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 3
         resources:
           limits:
             memory: "256Mi"
