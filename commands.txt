@@ -25,3 +25,6 @@ kubectl set image deployment/first-app kub-first-app=j0nnyz/kub-first-app:2
 kubectl rollout status deployment/first-app
 kubectl rollout undo deployment/first-app
 kubectl rollout undo deployment/first-app --to-revision=1
+
+************
+kubectl apply -f deployment.yaml
