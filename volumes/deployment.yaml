@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: story-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: story
+  template:
+    metadata:
+      labels:
+        app: story
+        tier: backend
+    spec:
+      containers:
+      - name: story
+        image: j0nnyz/kub-data-demo:1
+        volumeMounts:
+          - name: story-volume
+            mountPath: /app/story
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+      volumes:
+        - name: story-volume
+          emptyDir: {}
