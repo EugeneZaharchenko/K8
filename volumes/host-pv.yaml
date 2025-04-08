@@ -6,9 +6,9 @@ spec:
   capacity:
     storage: 2Gi
   volumeMode: Filesystem
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Recycle
   hostPath:
     path: /data
     type: DirectoryOrCreate

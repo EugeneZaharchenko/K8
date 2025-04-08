@@ -9,6 +9,6 @@ spec:
     app: story
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 3000
+      port: 81
+      targetPort: 3001
   type: LoadBalancer

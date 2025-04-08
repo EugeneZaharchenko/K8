@@ -4,6 +4,6 @@ services:
     volumes:
       - stories:/app/story
     ports:
-      - 80:3000
+      - 81:3001
 volumes:
-  stories: 
+  stories:
