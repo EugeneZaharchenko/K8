@@ -51,3 +51,5 @@ kubectl get pods -o wide
 kubectl describe pods firstrun
 kubectl replace --force -f firstrun.yaml
 kubectl delete pods firstrun
+
+kubectl get configmap
