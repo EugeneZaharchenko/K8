@@ -9,7 +9,7 @@ services:
   tasks:
     build: ./tasks-api
     ports: 
-      - "8000:8000"
+      - "8008:8000"
     environment:
       TASKS_FOLDER: tasks
     

@@ -53,3 +53,7 @@ kubectl replace --force -f firstrun.yaml
 kubectl delete pods firstrun
 
 kubectl get configmap
+
+***Networking***
+kubectl apply -f users-service.yaml
+minikube service users-service
