@@ -1,0 +1,9 @@
+services:
+  stories:
+    build: .
+    volumes:
+      - stories:/app/story
+    ports:
+      - 81:3001
+volumes:
+  stories:

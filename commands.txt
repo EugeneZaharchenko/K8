@@ -25,3 +25,31 @@ kubectl set image deployment/first-app kub-first-app=j0nnyz/kub-first-app:2
 kubectl rollout status deployment/first-app
 kubectl rollout undo deployment/first-app
 kubectl rollout undo deployment/first-app --to-revision=1
+
+************
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+minikube service backend
+
+kubectl delete -f deployment.yaml -f service.yaml
+kubectl apply -f master-depl.yaml
+kubectl delete svc -l group=example
+kubectl delete deployment -l group=example
+
+kubectl apply -f=host-pv.yaml
+kubectl apply -f=host-pvc.yaml
+kubectl apply -f=deployment.yaml
+kubectl get pv -> NAME      CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM              STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+                  host-pv   2Gi        RWO            Retain           Bound    default/host-pvc   standard       <unset>                          3m31s
+
+kubectl get pvc -> NAME       STATUS   VOLUME    CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+                   host-pvc   Bound    host-pv   2Gi        RWO            standard       <unset>                 3m32s
+
+***Prometheus***
+kubectl run firstrun --image=nginx
+kubectl get pods -o wide
+kubectl describe pods firstrun
+kubectl replace --force -f firstrun.yaml
+kubectl delete pods firstrun
+
+kubectl get configmap
