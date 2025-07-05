@@ -53,3 +53,16 @@ kubectl replace --force -f firstrun.yaml
 kubectl delete pods firstrun
 
 kubectl get configmap
+
+**Services**
+ktl run pod-hello --image=pbitty/hello-from:latest --port=80 --expose=true
+ktl get po,svc,ep --show-labels
+ktl describe svc pod-hello | grep -i selector -> ktl describe svc pod-hello | Select-String -Pattern 'selector' -CaseSensitive:$false
+ktl describe pod pod-hello | Select-String -Pattern 'IP:' -CaseSensitive:$false
+minikube service --all
+
+ktl create deployment deploy-hello --image=pbitty/hello-from:latest --port=80 --replicas=3
+ktl expose deployment deploy-hello --type=NodePort
+ktl get deploy,po,svc,ep -l app=deploy-hello --show-labels
+ktl scale deployment deploy-hello --replicas=0
+ktl delete pod pod-hello
