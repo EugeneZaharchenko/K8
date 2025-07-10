@@ -67,8 +67,11 @@ ktl get deploy,po,svc,ep -l app=deploy-hello --show-labels
 ktl scale deployment deploy-hello --replicas=0
 ktl delete pod pod-hello
 
-****Dashboard**
+**Dashboard**
 minikube dashboard
 kubectl create -f webserver.yaml // or kubectl create deployment webserver --image=nginx:alpine --replicas=3 --port=80
 kubectl expose deployment webserver --name=web-service --type=NodePort
 minikube service web-service // minikube service web-service --url
+
+**Probes**
+ktl get po liveness-exec -w
