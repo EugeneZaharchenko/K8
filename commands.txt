@@ -75,3 +75,14 @@ minikube service web-service // minikube service web-service --url
 
 **Probes**
 ktl get po liveness-exec -w
+
+**deployments**
+ktl create deployment web-cli --image=nginx
+ktl get all -l app=web-cli
+ktl create -f web-cli-file.yaml
+ktl get all -l app=web-cli-file
+ktl expose deployment web-cli --port=80 --type=NodePort
+minikube service web-cli
+minikube dashboard &
+ktl get all -l k8s-app=web-dash
+minikube service web-dash
