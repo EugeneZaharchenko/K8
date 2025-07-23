@@ -86,3 +86,12 @@ minikube service web-cli
 minikube dashboard &
 ktl get all -l k8s-app=web-dash
 minikube service web-dash
+
+ktl apply -f  app-green-shared-vol.yaml
+kubectl get deploy,pod -l app=green-app
+
+**Service для старту green depl**
+kubectl apply -f green-svc.yaml
+kubectl get nodes -o wide -> curl http://<NodeIP>:<NodePort>
+kubectl delete pod <green-pod-name>  # щоб новий pod стартував з новою командою, після цього сервіс запустить новий
+    green depl, який перезапише 'Welcome to GREEN App!'
