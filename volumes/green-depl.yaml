@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-app
+  labels:
+    app: green-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: green-app
+  template:
+    metadata:
+      labels:
+        app: green-app
+        type: canary
+    spec:
+      volumes:
+        - name: host-volume
+          hostPath:
+            path: /home/docker/blue-shared-volume
+      initContainers:
+        - name: init-green
+          image: debian
+          command: ["/bin/sh", "-c", "echo Welcome to GREEN App! > /host-vol/index.html"]
+          volumeMounts:
+            - name: host-volume
+              mountPath: /host-vol
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: host-volume
+              mountPath: /usr/share/nginx/html
+        - name: debian
+          image: debian
+          command: ["sleep", "infinity"]
+          volumeMounts:
+            - name: host-volume
+              mountPath: /host-vol
