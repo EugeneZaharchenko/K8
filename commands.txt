@@ -95,3 +95,15 @@ kubectl apply -f green-svc.yaml
 kubectl get nodes -o wide -> curl http://<NodeIP>:<NodePort>
 kubectl delete pod <green-pod-name>  # щоб новий pod стартував з новою командою, після цього сервіс запустить новий
     green depl, який перезапише 'Welcome to GREEN App!'
+
+**Configs**
+ktl create configmap green-web-cm --from-file=index.html
+ktl get cm
+ktl describe cm green-web-cm
+
+ktl apply -f web-green-with-cm.yaml
+ktl expose deployment green-web --type=NodePort
+minikube service list
+
+ktl create configmap blue-web-cm --from-file=index_blue.html
+ktl apply -f web-blue-with-cm.yaml
