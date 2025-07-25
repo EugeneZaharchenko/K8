@@ -107,3 +107,14 @@ minikube service list
 
 ktl create configmap blue-web-cm --from-file=index_blue.html
 ktl apply -f web-blue-with-cm.yaml
+
+**Secrets**
+data:
+  password: bXlzcWxwYXNzd29yZAo=
+echo -n mysqlpassword | base64 > password.txt
+ktl create secret generic my-file-password \
+      --from-file=password.txt
+
+ktl get secret my-file-password
+ktl describe secret my-file-password
+

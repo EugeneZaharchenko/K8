@@ -26,4 +26,4 @@ spec:
             name: blue-web-cm
             items:
               - key: index_blue.html
-                path: index.html  # 🔥 Переіменування до потрібного імені!
+                path: index.html  # 🔥 Перейменування до потрібного імені!
